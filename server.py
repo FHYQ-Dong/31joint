@@ -117,8 +117,9 @@ class QuestionObject():
         self.question = question
 
 class AnswerObject():
-    def __init__(self, id, answer, create_time):
+    def __init__(self, id, question, answer, create_time):
         self.id = id
+        self.question = question
         self.answer = answer
         self.create_time = create_time
 
@@ -161,7 +162,7 @@ class ThreadPool():
                 
                 myAIAssistant = AssistantOf31JointByChatGLM(apikey=args.apikey[0], model_type="glm-4", knowledge_id=args.knowledge_id[0])
                 knowledgebase_ans, webseach_ans = myAIAssistant.ask(QuesObj.question)
-                AnsObj = AnswerObject(QuesObj.id, knowledgebase_ans + '\n\n' + webseach_ans, int(time.time()))
+                AnsObj = AnswerObject(QuesObj.id, QuesObj.question, knowledgebase_ans + '\n\n' + webseach_ans, int(time.time()))
                 self.answer_lock.acquire()
                 self.answers[QuesObj.id] = AnsObj
                 self.answer_lock.release()
@@ -196,7 +197,7 @@ class ThreadPool():
             AnsObj: AnswerObject|None = self.answers[id]
             self.answer_lock.release()
             if AnsObj == None:
-                AnsObj = AnswerObject(id, "", 0)
+                AnsObj = AnswerObject(id, "", "", 0)
             return AnsObj
         else:
             self.answer_lock.release()
@@ -250,9 +251,9 @@ if __name__ == "__main__":
         if AnsObj is None:
             return {"status": "Fail", "message": "No such question or answer expired"}
         elif AnsObj.answer == "":
-            return {"status": "Processing", "answer": AnsObj.answer}
+            return {"status": "Processing", "question": AnsObj.question, "answer": AnsObj.answer}
         else:
-            return {"status": "Success", "answer": AnsObj.answer}
+            return {"status": "Success", "question": AnsObj.question, "answer": AnsObj.answer}
 
     @app.get("/test/")
     async def read_root():
