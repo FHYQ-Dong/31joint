@@ -97,17 +97,19 @@ class AssistantOf31JointByChatGLM():
         knowledge_base_answer = "### 政策规章\n" + knowledge_base_answer.choices[0].message.content
         
         # parse the answer from web search
-        ref_links = websearch_answer.web_search
-        # print(ref_links)
-        ref_links_md = ""
-        if ref_links:
-            for ref_link in ref_links:
-                media = ref_link["media"] + " - " if "media" in ref_link else ""
-                title = ref_link["title"] if "title" in ref_link else ""
-                link = ref_link["link"] if "link" in ref_link else ""
-                ref_links_md += f"- [{media}{title}]({link})\n"
-        websearch_answer = "### 网络搜索\n" + websearch_answer.choices[0].message.content + "\n" + "**来源链接：**\n" + ref_links_md
-
+        try:
+            ref_links = websearch_answer.web_search
+            # print(ref_links)
+            ref_links_md = ""
+            if ref_links:
+                for ref_link in ref_links:
+                    media = ref_link["media"] + " - " if "media" in ref_link else ""
+                    title = ref_link["title"] if "title" in ref_link else ""
+                    link = ref_link["link"] if "link" in ref_link else ""
+                    ref_links_md += f"- [{media}{title}]({link})\n"
+            websearch_answer = "### 网络搜索\n" + websearch_answer.choices[0].message.content + "\n" + "**来源链接：**\n" + ref_links_md
+        except Exception as e:
+            websearch_answer = "### 网络搜索\n" + websearch_answer.choices[0].message.content
         return knowledge_base_answer, websearch_answer
 
 
