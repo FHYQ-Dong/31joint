@@ -1,5 +1,7 @@
 import time
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import fastapi
 from zhipuai import ZhipuAI
 import threading
 import sys
@@ -260,6 +262,14 @@ if __name__ == "__main__":
     @app.get("/test/")
     async def read_root():
         return {"Hello": "World"}
+    
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins     = ["*"],
+        allow_credentials = True,
+        allow_methods     = ["*"],
+        allow_headers     = ["*"],
+    )
 
     import uvicorn
     uvicorn.run(app, host=args.address[0], port=args.port[0])
