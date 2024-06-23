@@ -41,7 +41,8 @@ class AssistantOf31JointByChatGLM():
     def get_ans_from_knowledge_base(self, question: str):
         self.message = [
             {"role": "system", "content": "作为 AI 助手，你的任务是帮助用户查找和理解政策。用户询问某些政策的具体实例。你将通过搜索政策知识库或相关文档，找到最新的规定。根据搜索到的内容，提供相关的详细信息。请确保所提供信息的准确性和适用性，帮助用户完全理解相关政策。"},
-            {"role": "system", "content": "你首先根据用户的问题总结出3至11个关键词，然后在政策知识库中搜索这些关键词。如果找到了相关的政策，你将提供相关的详细信息。如果找不到相关的政策，你将使用自己的知识回答问题。"},
+            # {"role": "system", "content": "你首先根据用户的问题总结出3至11个关键词，然后在政策知识库中搜索这些关键词。如果找到了相关的政策，你将提供相关的详细信息。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“"},
+            {"role": "system", "content": "你将根据用户的问题，从政策知识库中找到相关的政策。如果找到了相关的政策，你将提供相关的详细信息，并在每一条信息后提供来源政策文件的名称。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“"},
             # {"role": "system", "content": "如果用户的问题与\"工伤\"、\"离休人员\"、\"门诊特殊病\"、\"生育\"有关，你将返回知识库中相关的须知、标准、规定等文件。注意，只有用户的提问与这些关键词有关时，你才会考虑这些"},
             {"role": "user", "content": question}
         ]
@@ -67,6 +68,9 @@ class AssistantOf31JointByChatGLM():
                 )
         return resp
     
+    """
+    根据要求，取消了从网络搜索获取答案的功能
+    
     def get_ans_from_websearch(self, question: str):
         self.message = [
             {"role": "system", "content": "作为 AI 助手，你的任务是帮助用户查找和理解政策。用户询问某些政策的具体实例。你将通过搜索互联网，找到最新的规定。根据搜索到的内容，提供相关的详细信息。请确保所提供信息的准确性和适用性，帮助用户完全理解相关政策。"},
@@ -85,18 +89,24 @@ class AssistantOf31JointByChatGLM():
                     model    = self.model_type
                 )
         return resp
+        """
     
     def ask(self, question: str):
         # use multi-threading to get answers from knowledge base and web search
-        knowledge_base_worker = MyThread(self.get_ans_from_knowledge_base, args=(question,))
-        websearch_worker = MyThread(self.get_ans_from_websearch, args=(question,))
-        knowledge_base_worker.start()
-        websearch_worker.start()
-        knowledge_base_answer = knowledge_base_worker.get_result()
-        websearch_answer = websearch_worker.get_result()
+        # knowledge_base_worker = MyThread(self.get_ans_from_knowledge_base, args=(question,))
+        # websearch_worker = MyThread(self.get_ans_from_websearch, args=(question,))
+        # knowledge_base_worker.start()
+        # websearch_worker.start()
+        # knowledge_base_answer = knowledge_base_worker.get_result()
+        # websearch_answer = websearch_worker.get_result()
+        knowledge_base_answer = self.get_ans_from_knowledge_base(question)
+        
             
         # parse the answer from knowledge base
-        knowledge_base_answer = "### 政策规章\n" + knowledge_base_answer.choices[0].message.content
+        knowledge_base_answer = "### 政策规章\n\n" + knowledge_base_answer.choices[0].message.content
+        
+        """
+        根据要求，取消了从网络搜索获取答案的功能
         
         # parse the answer from web search
         try:
@@ -112,7 +122,11 @@ class AssistantOf31JointByChatGLM():
             websearch_answer = "### 网络搜索\n" + websearch_answer.choices[0].message.content + "\n" + "**来源链接：**\n" + ref_links_md
         except Exception as e:
             websearch_answer = "### 网络搜索\n" + websearch_answer.choices[0].message.content
-        return knowledge_base_answer, websearch_answer
+        """
+        official_site_ans = "### 相关链接\n\n" + \
+            f"- [北京市医保局查询结果：{question}](https://ybj.beijing.gov.cn/so/s?tab=all&siteCode=1100000244&qt={question})\n\n" + \
+            f"- [北京市人民政府查询结果：{question}](https://www.beijing.gov.cn/so/s?tab=all&siteCode=1100000088&qt={question})\n\n"
+        return knowledge_base_answer, official_site_ans
 
 
 class QuestionObject():
