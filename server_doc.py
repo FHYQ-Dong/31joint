@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 import fastapi, uvicorn
 import docx, fitz
 import argparse
