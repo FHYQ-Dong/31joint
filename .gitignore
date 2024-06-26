@@ -2,3 +2,6 @@ SECRET.json
 t.py
 test.py
 ttt.py
+*.docx
+*.doc
+*.pdf

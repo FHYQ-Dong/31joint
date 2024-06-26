@@ -4,6 +4,7 @@ import argparse
 import sys
 from fastapi.middleware.cors import CORSMiddleware
 from io import BytesIO
+import os
 
 
 def get_text(raw, file_type):
@@ -13,7 +14,7 @@ def get_text(raw, file_type):
             fullText = []
             for page in doc:
                 fullText.append(page.get_text())
-            return ''.join(fullText).replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '')
+            return ''.join(fullText).replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '').replace('\u3000', '')
         elif file_type == 'docx':
             raw = BytesIO(raw)
             doc = docx.Document(raw)
@@ -21,7 +22,7 @@ def get_text(raw, file_type):
             fullText = []
             for para in doc.paragraphs:
                 fullText.append(para.text)
-            return ''.join(fullText).replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '')
+            return ''.join(fullText).replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '').replace('\u3000', '')
         else:
             return ""
     except Exception as e:
@@ -42,20 +43,34 @@ if __name__ == '__main__':
     
     app = fastapi.FastAPI()
     
-    @app.post("/get_text/pdf/")
-    def get_text_endpoint(file: bytes = fastapi.File(...)):
-        file_type = "pdf"
-        return {
-            "text": get_text(file, file_type)
-        }
+    """
+    改变接口形式
+    """
+    # @app.post("/get_text/pdf/")
+    # def get_text_endpoint(file: bytes = fastapi.File(...)):
+    #     file_type = "pdf"
+    #     return {
+    #         "text": get_text(file, file_type)
+    #     }
     
-    @app.post("/get_text/docx/")
-    def get_text_endpoint(file: bytes = fastapi.File(...)):
-        file_type = "docx"
-        return {
-            "text": get_text(file, file_type)
-        }
+    # @app.post("/get_text/docx/")
+    # def get_text_endpoint(file: bytes = fastapi.File(...)):
+    #     file_type = "docx"
+    #     return {
+    #         "text": get_text(file, file_type)
+    #     }
         
+    @app.get("/get_text/")
+    def get_text_endpoint(filepath: str):
+        print(filepath)
+        if os.path.splitext(filepath)[1] == ".pdf":
+            return {"text": get_text(open(filepath, "rb").read(), "pdf")}
+        elif os.path.splitext(filepath)[1] == ".docx":
+            return {"text": get_text(open(filepath, "rb").read(), "docx")}
+        else:
+            return {"text": ""}
+        
+    
     app.add_middleware(
         CORSMiddleware,
         allow_origins     = ["*"],
