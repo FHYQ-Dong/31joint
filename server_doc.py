@@ -3,6 +3,7 @@ import docx, fitz
 import argparse
 import sys
 from fastapi.middleware.cors import CORSMiddleware
+from io import BytesIO
 
 
 def get_text(raw, file_type):
@@ -14,7 +15,9 @@ def get_text(raw, file_type):
                 fullText.append(page.get_text())
             return ''.join(fullText).replace('\n', '').replace(' ', '').replace('\t', '').replace('\r', '')
         elif file_type == 'docx':
+            raw = BytesIO(raw)
             doc = docx.Document(raw)
+            raw.close()
             fullText = []
             for para in doc.paragraphs:
                 fullText.append(para.text)
