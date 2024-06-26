@@ -42,7 +42,7 @@ class AssistantOf31JointByChatGLM():
         self.message = [
             {"role": "system", "content": "作为 AI 助手，你的任务是帮助用户查找和理解政策。用户询问某些政策的具体实例。你将通过搜索政策知识库或相关文档，找到最新的规定。根据搜索到的内容，提供相关的详细信息。请确保所提供信息的准确性和适用性，帮助用户完全理解相关政策。"},
             # {"role": "system", "content": "你首先根据用户的问题总结出3至11个关键词，然后在政策知识库中搜索这些关键词。如果找到了相关的政策，你将提供相关的详细信息。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“"},
-            {"role": "system", "content": "你将根据用户的问题，从政策知识库中找到相关的政策。如果找到了相关的政策，你将提供相关的详细信息，并在每一条信息后提供来源政策文件的名称。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“"},
+            {"role": "system", "content": "你将根据用户的问题，从政策知识库中找到相关的政策。如果找到了相关的政策，你将提供相关的详细信息，并在每一条信息后提供来源政策文件的名称。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“，不允许使用背景知识进行回答。"},
             {"role": "system", "content": "若用户问题中提到以下关键词，请搜索“城乡居民基本医疗保险”：“城乡居民”、“一老一小”、“学生、儿童、婴幼儿、老年人“、”劳动年龄内居民“，并且在回答中只能提及“城乡居民基本医疗保险”这一词语。"},
             {"role": "system", "content": "若用户问题中提到以下关键词，请搜索“门诊特殊病”：“门特病”、“特殊病”，“门诊特病”、“恶性肿瘤”、“肿瘤”、“癌症”、“透析”、“肾透析”、“移植”、“抗排异“，并且在回答中只能提及“门诊特殊病”这一词语。"},
             # {"role": "system", "content": "如果用户的问题与\"工伤\"、\"离休人员\"、\"门诊特殊病\"、\"生育\"有关，你将返回知识库中相关的须知、标准、规定等文件。注意，只有用户的提问与这些关键词有关时，你才会考虑这些"},
@@ -53,7 +53,7 @@ class AssistantOf31JointByChatGLM():
                 "type": "retrieval",
                 "retrieval": {
                     "knowledge_id": self.knowledge_id,
-                    "prompt_template": "从文档\n\"\"\"\n{{knowledge}}\n\"\"\"\n中找问题\n\"\"\"\n{{question}}\n\"\"\"\n的答案，找到答案就仅使用文档语句回答问题，找不到答案就用自身知识回答并且告诉用户该信息不是来自文档。\n不要复述问题，直接开始回答。"
+                    # "prompt_template": "从文档\n\"\"\"\n{{knowledge}}\n\"\"\"\n中找问题\n\"\"\"\n{{question}}\n\"\"\"\n的答案，找到答案就仅使用文档语句回答问题，找不到答案就仅返回”根据您的问题，未能在知识库中查询到相关信息。“。\n不要复述问题，直接开始回答。"
                 }
             },
             {
@@ -105,8 +105,12 @@ class AssistantOf31JointByChatGLM():
         
             
         # parse the answer from knowledge base
-        knowledge_base_answer = "### 政策规章\n\n" + knowledge_base_answer.choices[0].message.content
-        
+        content = knowledge_base_answer.choices[0].message.content
+        if ("文档中并未提及" in content) or ("文档中未提及" in content) or \
+            ("基于我的知识库" in content) or ("非来自您提供的文档" in content):
+            knowledge_base_answer = "### 政策规章\n\n" + "根据您的问题，未能在知识库中查询到相关信息。"
+        else:
+            knowledge_base_answer = "### 政策规章\n\n" + content
         """
         根据要求，取消了从网络搜索获取答案的功能
         
