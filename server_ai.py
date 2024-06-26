@@ -1,12 +1,11 @@
 import time
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import fastapi
 from zhipuai import ZhipuAI
 import threading
 import sys
 import argparse
-
+import json
 
 global threadpool, args
 threadpool = None
@@ -61,6 +60,8 @@ class AssistantOf31JointByChatGLM():
             "抗排异": "门诊特殊病"
         }
         question = batch_replace(question, replace_dict)
+        while "门诊门诊" in question:
+            question = question.replace("门诊门诊", "门诊")
         self.message = [
             {"role": "system", "content": "作为 AI 助手，你的任务是帮助用户查找和理解政策。用户询问某些政策的具体实例。你将通过搜索政策知识库或相关文档，找到最新的规定。根据搜索到的内容，提供相关的详细信息。请确保所提供信息的准确性和适用性，帮助用户完全理解相关政策。"},
             # {"role": "system", "content": "你首先根据用户的问题总结出3至11个关键词，然后在政策知识库中搜索这些关键词。如果找到了相关的政策，你将提供相关的详细信息。如果找不到相关的政策，你只需要返回”根据您的问题，未能在知识库中查询到相关信息。“"},
@@ -90,7 +91,39 @@ class AssistantOf31JointByChatGLM():
                     tools    = tools,
                     model    = self.model_type
                 )
-        return resp
+        ans_content = resp.choices[0].message.content
+        # print(ans_content)
+        
+        resp = self.client.chat.completions.create(
+            model = "glm-4",  # 填写需要调用的模型名称
+            messages = [
+                {"role": "system", "content": "使用函数调用功能识别用户输入的语段中的信息是否有来源于文档的部分"},
+                {"role": "user", "content": ans_content}
+            ],
+            tools = [{
+                "type": "function",
+                "function": {
+                    "name": "extract_info_from_text",
+                    "description": "确定用户输入的信息是否有来源于文档的部分。",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "from_document": {
+                                "description": "是否有信息来源于文档，若有，为True；若全无，为False",
+                                "type": "bool"
+                            }
+                        },
+                        "required": [ "from_document" ]
+                    }
+                }
+            }]
+        )
+        
+        from_document = json.loads(resp.choices[0].message.tool_calls[0].function.arguments)['from_document']
+        if from_document:
+            return ans_content
+        else:
+            return "根据您的问题，未能在知识库中查询到相关信息。"
     
     """
     根据要求，取消了从网络搜索获取答案的功能
@@ -127,12 +160,13 @@ class AssistantOf31JointByChatGLM():
         
             
         # parse the answer from knowledge base
-        content = knowledge_base_answer.choices[0].message.content
-        if ("文档中并未提及" in content) or ("文档中未提及" in content) or \
-            ("基于我的知识库" in content) or ("非来自您提供的文档" in content):
-            knowledge_base_answer = "### 政策规章\n\n" + "根据您的问题，未能在知识库中查询到相关信息。"
-        else:
-            knowledge_base_answer = "### 政策规章\n\n" + content
+        # content = knowledge_base_answer.choices[0].message.content
+        knowledge_base_answer = "### 政策规章\n\n" + knowledge_base_answer
+        # if ("文档中并未提及" in content) or ("文档中未提及" in content) or \
+        #     ("基于我的知识库" in content) or ("非来自您提供的文档" in content):
+        #     knowledge_base_answer = "### 政策规章\n\n" + "根据您的问题，未能在知识库中查询到相关信息。"
+        # else:
+        #     knowledge_base_answer = "### 政策规章\n\n" + content
         """
         根据要求，取消了从网络搜索获取答案的功能
         
