@@ -1,6 +1,6 @@
 # 31joint
 
-# 前端代码
+## 前端代码
 
 见 `wp-content/` 目录，其下包含 `README.md`
 
