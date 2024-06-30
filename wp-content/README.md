@@ -1,6 +1,6 @@
 # 31joint-WordPress
 ## 项目代码
-![1719740556310](image\README\1719740556310.png)
+![1719740556310](image/README/1719740556310.png)
 
 ## 项目内容
 ```bash
