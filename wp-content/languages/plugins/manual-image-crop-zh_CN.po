@@ -1,0 +1,205 @@
+# Translation of Plugins - Manual Image Crop - Stable (latest release) in Chinese (China)
+# This file is distributed under the same license as the Plugins - Manual Image Crop - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-03-23 06:40:56+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: zh_CN\n"
+"Project-Id-Version: Plugins - Manual Image Crop - Stable (latest release)\n"
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/tomaszsita"
+msgstr "https://github.com/tomaszsita"
+
+#. Author of the plugin/theme
+msgid "Tomasz Sita"
+msgstr "Tomasz Sita"
+
+#. Description of the plugin/theme
+msgid "Plugin allows you to manually crop all the image sizes registered in your WordPress theme (in particular featured image). Simply click on the \"Crop\" link next to any image in your media library and select the area of the image you want to crop."
+msgstr "此插件允许你手动裁剪在你的WordPress主题中注册的所有图片大小(特别是特色图片)。只需单击媒体库中任何图像旁边的“裁剪”链接，然后选择要裁剪的图像区域。"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/tomaszsita/wp-manual-image-crop"
+msgstr "https://github.com/tomaszsita/wp-manual-image-crop"
+
+#: manual-image-crop.php:68
+msgid "Settings"
+msgstr "设置"
+
+#: lib/ManualImageCropSettingsPage.php:172
+msgid "No"
+msgstr "否"
+
+#: lib/ManualImageCropSettingsPage.php:171
+msgid "Yes"
+msgstr "是"
+
+#: lib/ManualImageCropSettingsPage.php:146
+msgid "Custom Label"
+msgstr "自定义标签"
+
+#: lib/ManualImageCropSettingsPage.php:145
+msgid "Default JPEG Quality"
+msgstr "默认 JPEG 质量"
+
+#: lib/ManualImageCropSettingsPage.php:144
+msgid "Visible"
+msgstr "可见"
+
+#: lib/ManualImageCropSettingsPage.php:143
+msgid "Size"
+msgstr "尺寸"
+
+#: lib/ManualImageCropSettingsPage.php:120
+msgid "Enter your settings below:"
+msgstr "在下面输入您的设置："
+
+#: lib/ManualImageCropSettingsPage.php:94
+msgid "Crop sizes settings"
+msgstr "裁剪大小设置"
+
+#: lib/ManualImageCropSettingsPage.php:87
+msgid "Mic Custom Settings"
+msgstr "其他自定义设置"
+
+#: lib/ManualImageCropSettingsPage.php:45
+#: lib/ManualImageCropSettingsPage.php:61
+msgid "Manual Image Crop Settings"
+msgstr "手动图像裁切设置"
+
+#: lib/ManualImageCropEditorWindow.php:280
+msgid "Source too small"
+msgstr "源图片太小"
+
+#: lib/ManualImageCropEditorWindow.php:278
+msgid "Compatible"
+msgstr "兼容"
+
+#: lib/ManualImageCropEditorWindow.php:234
+msgid "An Error has occured. Please try again or contact plugin's author."
+msgstr "发生错误。请重试或联系插件作者。"
+
+#: lib/ManualImageCropEditorWindow.php:230
+msgid "The image has been cropped successfully"
+msgstr "图像已成功裁剪"
+
+#: lib/ManualImageCropEditorWindow.php:223
+msgid "Generate Retina/HiDPI (@2x):"
+msgstr "生成视网膜/HiDPI(@2x)："
+
+#: lib/ManualImageCropEditorWindow.php:214
+#: lib/ManualImageCropSettingsPage.php:181
+msgid "10 (very low, smallest file)"
+msgstr "10（非常低，文件最小）"
+
+#: lib/ManualImageCropEditorWindow.php:213
+#: lib/ManualImageCropSettingsPage.php:180
+msgid "30 (low)"
+msgstr "30 (低)"
+
+#: lib/ManualImageCropEditorWindow.php:212
+#: lib/ManualImageCropSettingsPage.php:179
+msgid "50 (average)"
+msgstr "50 (适中)"
+
+#: lib/ManualImageCropEditorWindow.php:211
+#: lib/ManualImageCropSettingsPage.php:178
+msgid "60 (good)"
+msgstr "60 (好)"
+
+#: lib/ManualImageCropEditorWindow.php:210
+#: lib/ManualImageCropSettingsPage.php:177
+msgid "70 (high quality)"
+msgstr "70 (高质量)"
+
+#: lib/ManualImageCropEditorWindow.php:209
+#: lib/ManualImageCropSettingsPage.php:176
+msgid "80 (very high quality)"
+msgstr "80 (颇高质量)"
+
+#: lib/ManualImageCropEditorWindow.php:208
+#: lib/ManualImageCropSettingsPage.php:175
+msgid "100 (best quality, biggest file)"
+msgstr "100（最佳质量，最大文件）"
+
+#: lib/ManualImageCropEditorWindow.php:207
+msgid "Target JPEG Quality"
+msgstr "目标JPEG质量"
+
+#: lib/ManualImageCropEditorWindow.php:199
+msgid "Crop it!"
+msgstr "开始裁剪！"
+
+#: lib/ManualImageCropEditorWindow.php:190
+msgid "Previous image:"
+msgstr "上一个图像："
+
+#: lib/ManualImageCropEditorWindow.php:181
+msgid "New image:"
+msgstr "新图像："
+
+#: lib/ManualImageCropEditorWindow.php:175
+msgid "Hard crop mode"
+msgstr "硬裁剪模式"
+
+#: lib/ManualImageCropEditorWindow.php:174
+msgid "Soft proportional crop mode"
+msgstr "按比例软裁切模式"
+
+#: lib/ManualImageCropEditorWindow.php:168
+msgid "Target picture dimensions:"
+msgstr "目标图像尺寸："
+
+#: lib/ManualImageCropEditorWindow.php:166
+msgid "Original picture dimensions:"
+msgstr "原始图像尺寸"
+
+#: lib/ManualImageCropEditorWindow.php:47
+#: lib/ManualImageCropSettingsPage.php:136
+msgid "Full Size"
+msgstr "原尺寸"
+
+#: lib/ManualImageCropEditorWindow.php:46
+#: lib/ManualImageCropSettingsPage.php:135
+msgid "Large"
+msgstr "大尺寸"
+
+#: lib/ManualImageCropEditorWindow.php:45
+#: lib/ManualImageCropSettingsPage.php:134
+msgid "Medium"
+msgstr "中等"
+
+#: lib/ManualImageCropEditorWindow.php:44
+#: lib/ManualImageCropSettingsPage.php:133
+msgid "Thumbnail"
+msgstr "缩略图"
+
+#: lib/ManualImageCropEditorWindow.php:31
+msgid "Pick the image size:"
+msgstr "选择图像尺寸"
+
+#: lib/ManualImageCrop.php:94 lib/ManualImageCrop.php:104
+#: lib/ManualImageCrop.php:131
+msgid "Crop Image"
+msgstr "裁剪图像"
+
+#: lib/ManualImageCrop.php:67
+msgid "Crop featured image"
+msgstr "裁剪特色图像"
+
+#. #-#-#-#-#  tmp-manual-image-crop.pot (Manual Image Crop 1.12)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: lib/ManualImageCrop.php:67 lib/ManualImageCrop.php:94
+#: lib/ManualImageCrop.php:104 lib/ManualImageCrop.php:131
+#: lib/ManualImageCropSettingsPage.php:46
+msgid "Manual Image Crop"
+msgstr "手动图像裁剪"
+
+#: lib/ManualImageCrop.php:58
+msgid "Crop"
+msgstr "剪裁"

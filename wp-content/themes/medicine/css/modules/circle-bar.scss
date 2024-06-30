@@ -1,0 +1,44 @@
+.progress-box {
+    height: 1000px;
+}
+
+.progress {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* 保证进度条在最上层 */
+    width: 120px;
+    height: 120px;
+
+    .progress-ring {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .progress-circle {
+            fill: none;
+            stroke: #007bff; // 进度条颜色
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 282; // 2πr (r=40)
+            stroke-dashoffset: 282; // 初始状态，整个圆环未填充
+            transform: rotate(-90deg); // 使进度条从顶部开始
+            transform-origin: center;
+            transition: stroke-dashoffset 2s ease-in-out; // 添加过渡动画
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+    }
+}
+
+// 应用动画到进度条
+.progress.active .progress-circle {
+    stroke-dashoffset: 0; // 填满整个圆环
+}

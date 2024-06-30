@@ -1,0 +1,60 @@
+.full-width-split {
+  @include atMedium {
+    //margin: 0px 10px;
+    display: flex;
+  }
+
+  &__one {
+    background-color: $beige;
+    flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    //padding: 1.6rem 16px;
+    @include atMedium {
+      //padding: 40px;
+    }
+
+    .full-width-split__inner {
+      @include atMedium {
+        //float: right;
+      }
+    }
+  }
+
+  &__two {
+    //background-color: $beige;
+    flex: 1;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    @include atMedium {
+      //padding: 40px;
+    }
+    .full-width-split__inner {
+      @include atMedium {
+        //float: right;
+      }
+    }
+  }
+  &__three {
+    flex: 1;
+    background-color: $beige;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    @include atMedium {
+      //padding: 40px;
+    }
+    .full-width-split__inner {
+      @include atMedium {
+        //float: right;
+      }
+    }
+  }
+  &__inner {
+    @media (min-width: 1350px) {
+      //width: 610px;
+    }
+  }
+}

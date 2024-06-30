@@ -1,0 +1,205 @@
+//notices
+.edit-notice,
+.delete-notice,
+.submit-notice {
+  font-size: 0.9rem;
+  background-color: #eee;
+  padding: 8px 16px;
+  display: inline-block;
+  margin-right: 7px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+//delete-notice
+.delete-notice{
+  margin-top: 10px;
+  position: relative;
+}
+
+.submit-notice {
+  color: #fff;
+  border: none;
+  background-color: $darkOrange;
+  line-height: 1.65;
+}
+
+.upload-notice-hide {
+  visibility: hidden;
+}
+
+.submit-notice:hover {
+  background-color: adjust-color($darkOrange, $lightness: -10%, $saturation: -20%);
+}
+
+.edit-notice,
+.delete-notice {
+  @media (min-width: 635px) {
+    position: relative;
+    top: -12px;
+  }
+}
+
+.edit-notice:hover,
+.delete-notice:hover {
+  background-color: #ddd;
+}
+
+.delete-notice {
+  color: red;
+}
+
+.update-notice {
+  visibility: hidden;
+}
+
+.update-notice--visible {
+  visibility: visible;
+}
+
+.notice-title-field {
+  width: 40%;
+  font-size: 1.85rem;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300;
+  color: $mainBlue;
+  border: 1px solid transparent;
+  padding: 7px;
+  outline: none;
+  position: relative;
+  top: 1px;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+
+  @media (min-width: 635px) {
+    width: 65%;
+    font-size: 3.125rem;
+  }
+}
+
+.notice-body-field {
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  resize: none;
+  display: block;
+  width: 100%;
+  line-height: 1.65;
+  font-size: 1.15rem;
+  padding: 7px;
+  border: 1px solid transparent;
+  height: 175px;
+  outline: none;
+}
+
+.notice-active-field {
+  border: 1px solid #ddd;
+  animation: pulseBorder 0.75s alternate infinite;
+}
+
+@keyframes pulseBorder {
+  0% {
+    border: 1px solid #fff;
+  }
+
+  100% {
+    border: 1px solid #ccc;
+  }
+}
+
+/* Create notice */
+.create-notice {
+  background-color: #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.new-notice-title {
+  width: 100%;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+  box-sizing: border-box;
+}
+
+.new-notice-body {
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  border: none;
+  margin-bottom: 10px;
+  height: 170px;
+  font-size: 1.15rem;
+  line-height: 1.65;
+}
+
+/* Reveal and Hide Fade Transitions */
+#my-notices {
+  position: relative;
+}
+
+#my-notices li {
+  transition: all 0.4s ease-out;
+  opacity: 1;
+}
+
+#my-notices li.fade-out {
+  height: 0px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0.5;
+}
+
+#my-notices li.fade-in-calc {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.notice-limit-message{
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  color: #c32929;
+  font-weight: bold;
+}
+.notice-limit-message.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.file-list {  
+  max-height: 0;  
+  overflow: hidden;  
+  transition: max-height 0.5s ease-in-out;  
+  //background-color: #f9f9f9;  
+  //padding: 10px;  
+}  
+
+.file-list.visible {  
+  max-height: 500px; /* 或者任何您想要的高度 */  
+}
+
+
+//须知分类
+.notice-flex-container {  
+  display: flex;  
+  align-items: center; /* 垂直居中 */  
+}  
+.notice-flex-container > * {  
+  margin-right: 10px; /* 可选，用于添加间距 */  
+}
+
+#current_notice ul{
+  margin:0;
+}

@@ -1,0 +1,148 @@
+# Translation of Plugins - WP SMTP - Stable (latest release) in Chinese (China)
+# This file is distributed under the same license as the Plugins - WP SMTP - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-10-17 00:26:23+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: zh_CN\n"
+"Project-Id-Version: Plugins - WP SMTP - Stable (latest release)\n"
+
+#. Author of the plugin
+#: wp-smtp.php
+msgid "WPOmnia"
+msgstr "WPOmnia"
+
+#: wp-smtp.php:247
+msgid "We recently made some changes regarding how we save the username and password in the database, namely we are encrypting them, so that might be the reason for the connection error. Re-entering and saving them should solve the issue."
+msgstr "我们最近对在数据库中保存用户名和密码的方式做了一些更改，即我们对它们进行了加密，因此这可能是连接错误的原因。重新输入并保存用户名和密码应该可以解决问题。"
+
+#: wp-smtp.php:243
+msgid "Seems like there are some problems with the enterd information. Please re-check & re-enter it and hit the \"Save changes\" button."
+msgstr "输入的信息似乎有问题。请重新检查并重新输入，然后点击 \"保存更改 \"按钮。"
+
+#: wp-smtp.php:242
+msgid "WP SMTP connection error"
+msgstr "WP SMTP 连接错误"
+
+#: wp_smtp_admin.php:224
+msgid "Disable the email logging functionality."
+msgstr "禁用邮件日志功能。"
+
+#: wp_smtp_admin.php:213
+msgid "Disable Logs"
+msgstr "禁用日志"
+
+#. Author URI of the plugin
+#: wp-smtp.php
+msgid "https://www.wpomnia.com/"
+msgstr "https://www.wpomnia.com/"
+
+#. Description of the plugin
+#: wp-smtp.php
+msgid "WP SMTP can help us to send emails via SMTP instead of the PHP mail() function and email logger built-in."
+msgstr "WP SMTP 可以帮助我们通过 SMTP 发送电子邮件，而不是 PHP mail() 函数和内置的邮件记录器。"
+
+#: inc/Admin.php:24
+msgid "Mail Logs"
+msgstr "邮件日志"
+
+#: wp-smtp.php:136
+msgid "Logs"
+msgstr "日志"
+
+#: wp_smtp_admin.php:276
+msgid "Send Test"
+msgstr "发送测试"
+
+#: wp_smtp_admin.php:263
+msgid "Message:"
+msgstr "邮件正文："
+
+#: wp_smtp_admin.php:253
+msgid "Subject:"
+msgstr "邮件标题："
+
+#: wp_smtp_admin.php:243
+msgid "To:"
+msgstr "收件地址："
+
+#: wp_smtp_admin.php:239
+msgid "Test your settings"
+msgstr "测试你的配置"
+
+#: wp_smtp_admin.php:233
+msgid "Save Changes"
+msgstr "保存更改"
+
+#: wp_smtp_admin.php:207
+msgid "Delete options when deactivating this plugin."
+msgstr "当禁用此插件时自动删除此插件的设置数据。"
+
+#: wp_smtp_admin.php:196
+msgid "Delete Options"
+msgstr "禁用时自动删除设置"
+
+#: wp_smtp_admin.php:185
+msgid "Password"
+msgstr "认证密码"
+
+#: wp_smtp_admin.php:174
+msgid "Username"
+msgstr "认证用户名 (完整邮件地址)"
+
+#: wp_smtp_admin.php:148
+msgid "SMTP Authentication"
+msgstr "SMTP认证"
+
+#: wp_smtp_admin.php:137
+msgid "SMTP Port"
+msgstr "SMTP端口"
+
+#: wp_smtp_admin.php:101
+msgid "SMTP Secure"
+msgstr "SMTP加密方式"
+
+#: wp_smtp_admin.php:90
+msgid "SMTP Host"
+msgstr "SMTP服务器地址"
+
+#: wp_smtp_admin.php:79
+msgid "From Name"
+msgstr "发件人昵称"
+
+#: wp_smtp_admin.php:68
+msgid "From"
+msgstr "发件人地址"
+
+#: wp_smtp_admin.php:33
+msgid "Message sent!"
+msgstr "邮件已发送！"
+
+#: wp_smtp_admin.php:28
+msgid "Some of the test fields are empty or an invalid email supplied"
+msgstr "某些测试字段为空或提供的收件地址无效"
+
+#: wp_smtp_admin.php:57
+msgid "Options saved."
+msgstr "设置已保存。"
+
+#: wp_smtp_admin.php:55
+msgid "The field \"SMTP Host\" can not be left blank!"
+msgstr "“SMTP服务器地址”不能为空！"
+
+#: wp_smtp_admin.php:53
+msgid "The field \"From\" must be a valid email address!"
+msgstr "“发件人地址”必须是一个有效的电子邮件地址！"
+
+#: wp-smtp.php:139
+msgid "Settings"
+msgstr "设置"
+
+#. Plugin Name of the plugin
+#: wp-smtp.php inc/Admin.php:21
+msgid "WP SMTP"
+msgstr "WP SMTP"

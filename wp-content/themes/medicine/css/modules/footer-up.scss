@@ -1,0 +1,19 @@
+.backTop{
+    display: none; /* 默认隐藏，当页面可以滚动时显示 */  
+    position: fixed; /* 固定在页面上 */  
+    bottom: 20px; /* 距离页面底部20px */  
+    right: 30px; /* 距离页面右侧30px */  
+    z-index: 99; /* 确保按钮在其他内容之上 */  
+    font-size: 18px; /* 按钮字体大小 */  
+    border: none; /* 无边框 */  
+    outline: none; /* 去除点击时的轮廓 */  
+    background-color: #555; /* 背景颜色 */  
+    color: white; /* 文字颜色 */  
+    cursor: pointer; /* 鼠标悬停时显示小手图标 */  
+    padding: 15px; /* 内边距 */  
+    border-radius: 4px; /* 圆角 */      
+}
+
+.backTop:hover {  
+    background-color: #555555; /* 悬停时的背景颜色 */  
+}

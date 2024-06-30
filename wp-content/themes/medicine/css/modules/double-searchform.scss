@@ -1,0 +1,152 @@
+#smart-search, #site-search {  
+    position: relative;
+    flex: 1; /* 让两个搜索框平分剩余空间 */  
+    max-width: 525px; /* 设置最大宽度 */  
+    text-align: center; /* 通常不需要在输入框上设置这个，但在特定情况下可能需要 */  
+    padding: 15px; /* 添加一些内边距使搜索框看起来更好 */  
+} 
+
+.smart-search-submit{
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    background-color: #0D3B66;
+    font-family: "Roboto", sans-serif;
+    margin-left: 10px;
+    /* 添加鼠标悬浮时的样式 */  
+    transition: background-color 0.3s, color 0.3s; /* 可选的过渡效果，使颜色变化更平滑 */  
+}
+.smart-search-submit:hover {  
+    background-color: #a5d2ff; /* 替换为你希望在鼠标悬浮时显示的颜色 */  
+    color: white; /* 替换为你希望在鼠标悬浮时显示的文本颜色 */  
+}
+
+
+
+.search-container {  
+    display: flex;  
+    flex-wrap: wrap; /* 允许子元素换行 */  
+    align-items: center; /* 垂直居中 */     
+    justify-content: center; /* 让两个搜索框之间有空隙 */  
+    max-width: 1200px; /* 确保两个搜索框的总宽度不会超过这个值 */  
+    margin: 0 auto; /* 水平居中 */
+}  
+.search-form {  
+    flex: 1 0 90%; /* 默认占满整行，在手机端 */  
+    margin-bottom: 10px; /* 手机端竖排时，用于分隔两个搜索框 */  
+}  
+/* 在电脑端，当屏幕宽度足够大时，让两个搜索框并排显示 */  
+@media (min-width: 900px) { /* 根据你的需求设置这个断点 */  
+    .search-form {  
+        flex: 1; /* 平分空间 */  
+        margin-right: 10px; /* 用于分隔两个搜索框 */  
+        margin-bottom: 0; /* 移除底部的间距 */  
+    }  
+    .search-form:last-child {  
+        margin-right: 0; /* 移除最后一个搜索框的右侧间距 */  
+    }  
+}  
+.search-form-row {  
+    display: flex;  
+    //align-items: center; /* 垂直居中 */  
+}  
+.s {  
+    flex: 1; /* 让输入框尽可能宽 */  
+    margin-right: 5px; /* 输入框和提交按钮之间的间距（如果有的话） */  
+}  
+
+/* 如果存在提交按钮，并且你想在手机端隐藏它，可以添加以下样式 */  
+.submit-button {  
+    display: none; /* 默认隐藏提交按钮 */  
+}  
+/* 在电脑端显示提交按钮 */  
+@media (min-width: 600px) {  
+    .submit-button {  
+        display: block; /* 显示提交按钮 */  
+    }  
+}
+  
+
+  
+.submit-hide{
+    display: none;
+}
+
+
+.search-form-hide{
+    display: none;
+}
+
+.login-notice{
+    transition: all 0.3s ease-out;
+    color: #c32929;
+    font-weight: bold;
+    font-size: 20px;
+}
+.login-notice-hide{
+    display: none;
+}
+
+//进度条
+/* 设置进度条容器的样式，并增加其宽度 */  
+.progress-container {  
+    width: aut1o; /* 你可以根据需要调整这个值 */  
+    margin: auto; /* 居中显示，可选 */  
+}  
+
+/* 设置进度条的样式 */  
+progress {  
+    /* 移除浏览器默认的样式 */  
+    -webkit-appearance: none;  
+    -moz-appearance: none;  
+    appearance: none;  
+
+    /* 设置进度条的尺寸和背景 */  
+    width: 100%; /* 这里设置为100%是因为我们想要它占据整个容器的宽度 */  
+    height: 20px; /* 增加高度，使进度条看起来更宽 */  
+    border-radius: 10px;  
+    background-color: #4bb069;  
+    position: relative;  
+}  
+
+/* 设置进度条已完成部分的样式 */  
+progress::-webkit-progress-value {  
+    background-color: #1417ca; /* 蓝色进度条 */  
+    border-radius: 10px;  
+}  
+
+/* 设置进度条已完成部分在Firefox中的样式 */  
+progress::-moz-progress-bar {  
+    background-color: #1417ca; /* 蓝色进度条 */  
+    border-radius: 10px;  
+}  
+
+/* 进度条文本的样式（如果需要的话） */  
+.progress-value {  
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%);  
+    color: white;  
+    font-size: 14px;  
+    font-weight: bold;  
+} 
+
+.progress-container-hide{
+    display: none;
+}
+
+.search-alert-hide{
+    display: none;
+}
+
+.search-alert{
+    background-color: rgb(164, 1, 1);
+    font-size: 30px;
+    color: white;
+}
+
+.site-search-hide{
+    display: none;
+}
