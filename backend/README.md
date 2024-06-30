@@ -33,9 +33,9 @@
 - 命令行参数：`python server_doc.py [-h] [--port PORT] address`
 - 样例：
 
-```bash
+  ```bash
   python ./server_doc.py 0.0.0.0 -p 8001
-```
+  ```
 
 ## 使用
 
